@@ -1,0 +1,14 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+
+    <changeSet id="001" author="Polina Brigadirenko">
+        <sqlFile dbms="postgresql" splitStatements="false"
+                 path="sql/20220419_insert_roles.sql"
+                 stripComments="false"
+                 encoding="utf8"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+
+</databaseChangeLog>

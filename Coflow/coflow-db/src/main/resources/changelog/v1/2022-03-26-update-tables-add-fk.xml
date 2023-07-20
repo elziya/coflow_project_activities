@@ -1,0 +1,50 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+
+    <changeSet id="004" author="Polina Brigadirenko">
+        <renameColumn  columnDataType="uuid"
+                       newColumnName="material"
+                       oldColumnName="material_id"
+                       tableName="lesson_material"/>
+    </changeSet>
+
+    <changeSet id="005" author="Polina Brigadirenko">
+        <addForeignKeyConstraint  baseColumnNames="material"
+                                  baseTableName="lesson_material"
+                                  constraintName="fk_material_info"
+                                  referencedColumnNames="id"
+                                  referencedTableName="file_info"/>
+    </changeSet>
+
+    <changeSet id="006" author="Polina Brigadirenko">
+        <renameColumn  columnDataType="uuid"
+                       newColumnName="photo"
+                       oldColumnName="photo_id"
+                       tableName="course"/>
+    </changeSet>
+
+    <changeSet id="007" author="Polina Brigadirenko">
+        <addForeignKeyConstraint  baseColumnNames="photo"
+                                  baseTableName="course"
+                                  constraintName="fk_course_photo"
+                                  referencedColumnNames="id"
+                                  referencedTableName="file_info"/>
+    </changeSet>
+
+    <changeSet id="008" author="Polina Brigadirenko">
+        <renameColumn  columnDataType="uuid"
+                       newColumnName="certification_template"
+                       oldColumnName="certification_template_id"
+                       tableName="course"/>
+    </changeSet>
+
+    <changeSet id="009" author="Polina Brigadirenko">
+        <addForeignKeyConstraint  baseColumnNames="certification_template"
+                                  baseTableName="course"
+                                  constraintName="fk_course_certification_template"
+                                  referencedColumnNames="id"
+                                  referencedTableName="file_info"/>
+    </changeSet>
+</databaseChangeLog>

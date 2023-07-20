@@ -1,0 +1,211 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+
+    <changeSet id="2022-03-19-create-table-teacher" author="Polina Brigadirenko">
+        <createTable tableName="teacher">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_teacher"/>
+            </column>
+            <column name="create_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="NOW()"/>
+            <column name="info" type="TEXT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2022-03-19-create-table-account" author="Polina Brigadirenko">
+        <createTable tableName="account">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_account"/>
+            </column>
+            <column name="create_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="NOW()"/>
+            <column name="email" type="VARCHAR">
+                <constraints nullable="false" unique="true" uniqueConstraintName="uk_account_email"/>
+            </column>
+            <column name="password_hash" type="VARCHAR">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(150)"/>
+            <column name="last_name" type="VARCHAR(150)"/>
+            <column name="photo_id" type="uuid"/>
+            <column name="token" type="uuid"/>
+            <column name="teacher_id" type="uuid">
+                <constraints foreignKeyName="fk_teacher_info" references="teacher(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2022-03-19-create-table-theme" author="Polina Brigadirenko">
+        <createTable tableName="theme">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_theme"/>
+            </column>
+            <column name="create_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="NOW()"/>
+            <column name="name" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2022-03-19-create-table-lesson" author="Polina Brigadirenko">
+        <createTable tableName="lesson">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_lesson"/>
+            </column>
+            <column name="create_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="NOW()"/>
+            <column name="name" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="TEXT"/>
+            <column name="main_content" type="TEXT"/>
+            <column name="theme_id" type="uuid">
+                <constraints nullable="false" foreignKeyName="fk_theme_info" references="theme(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2022-03-19-create-table-comment" author="Polina Brigadirenko">
+        <createTable tableName="comment">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_comment"/>
+            </column>
+            <column name="create_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="NOW()"/>
+            <column name="text" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parent_id" type="uuid">
+                <constraints foreignKeyName="fk_parent_comment_info" references="comment(id)"/>
+            </column>
+            <column name="lesson_id" type="uuid">
+                <constraints nullable="false" foreignKeyName="fk_lesson_info" references="lesson(id)"/>
+            </column>
+            <column name="account_id" type="uuid">
+                <constraints nullable="false" foreignKeyName="fk_account_info" references="account(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2022-03-19-create-table-lesson-material" author="Polina Brigadirenko">
+        <createTable tableName="lesson_material">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_lesson_material"/>
+            </column>
+            <column name="lesson_id" type="uuid">
+                <constraints nullable="false" foreignKeyName="fk_lesson_info" references="lesson(id)"/>
+            </column>
+            <column name="material_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2022-03-19-create-table-language" author="Polina Brigadirenko">
+        <createTable tableName="language">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_language"/>
+            </column>
+            <column name="name" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2022-03-19-create-table-course-type" author="Polina Brigadirenko">
+        <createTable tableName="course_type">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_course_type"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2022-03-19-create-table-course" author="Polina Brigadirenko">
+        <createTable tableName="course">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_course"/>
+            </column>
+            <column name="create_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="NOW()"/>
+            <column name="name" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="TEXT"/>
+            <column name="for_whom" type="TEXT"/>
+            <column name="access_code" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="language_id" type="uuid">
+                <constraints nullable="false" foreignKeyName="fk_language_info" references="language(id)"/>
+            </column>
+            <column name="course_type_id" type="uuid">
+                <constraints nullable="false" foreignKeyName="fk_type_info" references="course_type(id)"/>
+            </column>
+            <column name="photo_id" type="uuid"/>
+            <column name="certification_template_id" type="uuid"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2022-03-19-create-table-teacher-course" author="Polina Brigadirenko">
+        <createTable tableName="teacher_course">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_teacher_course"/>
+            </column>
+            <column name="teacher_id" type="uuid">
+                <constraints nullable="false" foreignKeyName="fk_teacher_info" references="teacher(id)"/>
+            </column>
+            <column name="course_id" type="uuid">
+                <constraints nullable="false" foreignKeyName="fk_course_info" references="course(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2022-03-19-create-table-feedback" author="Polina Brigadirenko">
+        <createTable tableName="feedback">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_feedback"/>
+            </column>
+            <column name="create_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="NOW()"/>
+            <column name="account_id" type="uuid">
+                <constraints nullable="false" foreignKeyName="fk_account_info" references="account(id)"/>
+            </column>
+            <column name="course_id" type="uuid">
+                <constraints nullable="false" foreignKeyName="fk_course_info" references="course(id)"/>
+            </column>
+            <column name="text" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="estimation" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2022-03-19-create-table-course-account-category" author="Polina Brigadirenko">
+        <createTable tableName="course_account_category">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_category"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2022-03-19-create-table-account-course" author="Polina Brigadirenko">
+        <createTable tableName="account_course">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_account_course"/>
+            </column>
+            <column name="account_id" type="uuid">
+                <constraints nullable="false" foreignKeyName="fk_account_info" references="account(id)"/>
+            </column>
+            <column name="course_id" type="uuid">
+                <constraints nullable="false" foreignKeyName="fk_course_info" references="course(id)"/>
+            </column>
+            <column name="category_id" type="uuid">
+                <constraints nullable="false" foreignKeyName="fk_category_info" references="course_account_category(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,5 @@
+rootProject.name = 'Coflow'
+include 'coflow-api'
+include 'coflow-db'
+include 'coflow-impl'
+

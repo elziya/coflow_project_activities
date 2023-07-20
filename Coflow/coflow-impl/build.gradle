@@ -1,0 +1,65 @@
+war.archiveFileName = "${project.name}.war"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    ext {
+        liquibaseVersion = "3.10.3"
+        springDataJpaVersion = "2.6.2"
+        hibernateVersion = "5.6.5.Final"
+        mapstructVersion = "1.3.1.Final"
+        junitVersion = "5.7.0"
+        commonsIoVersion = "1.3.2"
+        springSecurityVersion = "5.3.13.RELEASE"
+        springSecurityConfigVersion = "5.3.0.RELEASE"
+        jwtVersion = "0.6.0"
+        freemarkerVersion = "2.3.31"
+        javaxMailVersion = "1.5.0-b01"
+        commonsLangVersion = "3.12.0"
+    }
+
+    implementation "org.liquibase:liquibase-core:${liquibaseVersion}"
+
+    implementation "org.springframework.data:spring-data-jpa:${springDataJpaVersion}"
+    implementation "org.springframework.security:spring-security-core:${springSecurityVersion}"
+    implementation "org.springframework.security:spring-security-web:${springSecurityVersion}"
+    implementation "org.springframework.security:spring-security-config:${springSecurityConfigVersion}"
+
+    implementation "io.jsonwebtoken:jjwt:${jwtVersion}"
+    implementation 'com.auth0:java-jwt:3.15.0'
+
+    implementation "org.hibernate:hibernate-core:${hibernateVersion}"
+    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+    implementation project(':coflow-api')
+    implementation project(':coflow-db')
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+
+    implementation "org.apache.commons:commons-io:${commonsIoVersion}"
+
+    implementation 'commons-fileupload:commons-fileupload:1.4'
+
+    implementation "org.freemarker:freemarker:${freemarkerVersion}"
+
+    implementation "javax.mail:mail:${javaxMailVersion}"
+
+    implementation "org.apache.commons:commons-lang3:${commonsLangVersion}"
+
+    implementation "org.xhtmlrenderer:core-renderer:R8"
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDirs += [
+                    project(":coflow-db").sourceSets.main.resources
+            ]
+        }
+    }
+}
+

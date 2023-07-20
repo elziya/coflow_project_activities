@@ -1,0 +1,38 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+
+    <changeSet id="014" author="Polina Brigadirenko">
+        <addForeignKeyConstraint  baseColumnNames="photo_id"
+                                  baseTableName="account"
+                                  constraintName="fk_account_photo_id"
+                                  referencedColumnNames="id"
+                                  referencedTableName="file_info"/>
+    </changeSet>
+
+    <changeSet id="015" author="Polina Brigadirenko">
+        <addForeignKeyConstraint  baseColumnNames="material_id"
+                                  baseTableName="lesson_material"
+                                  constraintName="fk_material_inf"
+                                  referencedColumnNames="id"
+                                  referencedTableName="file_info"/>
+    </changeSet>
+
+    <changeSet id="016" author="Polina Brigadirenko">
+        <addForeignKeyConstraint  baseColumnNames="photo_id"
+                                  baseTableName="course"
+                                  constraintName="fk_course_photo_id"
+                                  referencedColumnNames="id"
+                                  referencedTableName="file_info"/>
+    </changeSet>
+
+    <changeSet id="017" author="Polina Brigadirenko">
+        <addForeignKeyConstraint  baseColumnNames="certification_template_id"
+                                  baseTableName="course"
+                                  constraintName="fk_course_certification_template_id"
+                                  referencedColumnNames="id"
+                                  referencedTableName="file_info"/>
+    </changeSet>
+
+</databaseChangeLog>

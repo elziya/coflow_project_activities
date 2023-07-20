@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+  <include file="2022-03-19-create-tables.xml" relativeToChangelogFile="true"/>
+  <include file="2022-03-26-update-tables.xml" relativeToChangelogFile="true"/>
+  <include file="2022-03-26-update-tables-add-fk.xml" relativeToChangelogFile="true"/>
+  <include file="2022-04-05-rename-columns.xml" relativeToChangelogFile="true"/>
+  <include file="2022-04-06-add-fk-for-renamed-columns.xml" relativeToChangelogFile="true"/>
+  <include file="2022-04-19-insert-to-language-table.xml" relativeToChangelogFile="true"/>
+  <include file="2022-04-19-insert-to-course-type-table.xml" relativeToChangelogFile="true"/>
+  <include file="2022-05-03-change-table-teacher.xml" relativeToChangelogFile="true"/>
+  <include file="2022-04-16-create-role-table.xml" relativeToChangelogFile="true"/>
+  <include file="2022-04-16-update-account-role.xml" relativeToChangelogFile="true"/>
+  <include file="2022-04-16-create-account-refresh-token.xml" relativeToChangelogFile="true"/>
+  <include file="2022-04-19-insert-role-data.xml" relativeToChangelogFile="true"/>
+  <include file="2022-05-03-create-code-table.xml" relativeToChangelogFile="true"/>
+  <include file="2022-05-03-add-state-column-to-account.xml" relativeToChangelogFile="true"/>
+  <include file="2022-05-17-change-cource-table.xml" relativeToChangelogFile="true"/>
+  <include file="2022-05-18-change-table-teaher-course.xml" relativeToChangelogFile="true"/>
+  <include file="2022-05-18-change-table-account-role.xml" relativeToChangelogFile="true"/>
+  <include file="2022-05-18-change-table-theme.xml" relativeToChangelogFile="true"/>
+  <include file="2022-05-18-drop-table-teacher-course.xml" relativeToChangelogFile="true"/>
+  <include file="2022-05-18-change-lesson-material-table.xml" relativeToChangelogFile="true"/>
+  <include file="2022-05-21-insert-into-education-type-table.xml" relativeToChangelogFile="true"/>
+  <include file="2022-05-23-add-column-course-table.xml" relativeToChangelogFile="true"/>
+  <include file="2022-05-23-drop-password-constraint.xml" relativeToChangelogFile="true"/>
+</databaseChangeLog>
+

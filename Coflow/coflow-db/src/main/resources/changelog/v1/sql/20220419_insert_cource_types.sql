@@ -1,0 +1,3 @@
+INSERT INTO course_type (id, name) VALUES
+('5abeb388-c010-11ec-9d64-0242ac120002', 'PUBLIC'),
+('6219107e-c010-11ec-9d64-0242ac120002', 'PRIVATE');
