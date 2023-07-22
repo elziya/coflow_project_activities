@@ -11,6 +11,8 @@
 * Spring MVC
 * Rest API
 * Spring Security
+* JavaMail
+* FreeMarker
 * JWT
 * oAuth2 (VK)
 * RestTemplate
