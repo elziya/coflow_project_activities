@@ -20,6 +20,8 @@
 * Swagger
 * Gradle
 * Liquibase
+* Lombock
+* MapStruct 
 
 ## Роль
 Я выполняла следующие задачи:
