@@ -23,7 +23,7 @@
 * Swagger
 * Gradle
 * Liquibase
-* Lombock
+* Lombok
 * MapStruct 
 
 ## Роль
